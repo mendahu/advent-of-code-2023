@@ -13,6 +13,18 @@ type Mapper struct {
 	Range int
 }
 
+func (m *Mapper) LowerBound() int {
+	return m.Source
+}
+
+func (m *Mapper) UpperBound() int {
+	return m.Source + m.Range - 1
+}
+
+func (m *Mapper) TransformValue() int {
+	return m.Dest - m.Source
+}
+
 func (m *Mapper) Check(value int) (result int, inRange bool) {
 	if value >= m.Source && value < m.Source + m.Range {
 		depth := value - m.Source
@@ -60,6 +72,10 @@ func getMapValuesFromData(data []string) (mappers map[string]*Map) {
 	// get maps
 	mapperTitle := ""
 	for i := 2; i < len(data); i++ {
+		if data[i] == "" {
+			continue
+		}
+		
 		if strings.Contains(data[i], "map:") {
 			mapperTitle = strings.TrimSuffix(data[i], " map:")
 			newMap := Map{
