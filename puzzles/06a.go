@@ -17,9 +17,6 @@ func (r *Race) getMinChargeTime() int {
 	min := 0
 
 	for i := 0; i <= r.Record; i++ {
-		if (i % 1000000) == 0 {
-			fmt.Println(i, r.Record)
-		}
 		if ((r.Time - i) * i) > r.Record {
 			min = i
 			break
