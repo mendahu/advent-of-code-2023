@@ -2,12 +2,11 @@ package puzzles
 
 import (
 	"advent/utils"
-	"fmt"
 	"strconv"
 )
 
 // get greatest common divisor
-func GCD (a int, b int) int {
+func GCD(a int, b int) int {
 	for b != 0 {
 		t := b
 		b = a % b
@@ -17,7 +16,7 @@ func GCD (a int, b int) int {
 }
 
 // get least common multiple
-func LCM (a int, b int) int {
+func LCM(a int, b int) int {
 	result := a * b / GCD(a, b)
 
 	return result
@@ -26,10 +25,6 @@ func LCM (a int, b int) int {
 func Puzzle08b() string {
 	data := utils.FileReader("data/08.txt")
 	directions, waypoints, startingNodes := getDesertWaypointData(data)
-	fmt.Println(directions)
-	fmt.Println(waypoints)
-	fmt.Println(startingNodes)
-	
 
 	var navigate func()
 
@@ -51,7 +46,7 @@ func Puzzle08b() string {
 	
 		navigate()
 	}	
-	fmt.Println(startingNodes)
+
 	count := 0
 
 	for _, multiple := range startingNodes {
