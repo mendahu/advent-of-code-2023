@@ -62,7 +62,6 @@ func calculateDistanceOverBoundaries(g1, g2 []int, rowBoundaries []int, colBound
 		}
 
 		if lesser < boundary && greater > boundary {
-			fmt.Println("crossed rowBoundary", boundary)
 			x += boundaryVal - 1
 		}
 	}
@@ -82,7 +81,6 @@ func calculateDistanceOverBoundaries(g1, g2 []int, rowBoundaries []int, colBound
 		}
 
 		if lesser < boundary && greater > boundary {
-			fmt.Println("crossed colBoundary", boundary)
 			y += boundaryVal - 1
 		}
 	}
@@ -97,7 +95,6 @@ func calculateDistanceSumOverBoundaries(galaxies [][]int, rowBoundaries []int, c
 		for j := 1 + i; j < len(galaxies); j++ {
 			distance := calculateDistanceOverBoundaries(galaxies[i], galaxies[j], rowBoundaries, colBoundaries, boundaryVal)
 			distanceSum += distance
-			fmt.Println(distance)
 		}
 	}
 
@@ -108,11 +105,7 @@ func Puzzle11b() string {
 	data := utils.FileReader("data/11.txt")
 
 	universe := getUniverse(data)
-	for _, row := range universe.Grid {
-		fmt.Println(row)
-	}
 	rowBoundaries, colBoundaries := universe.getExpansionBoundaries()
-	fmt.Println(rowBoundaries, colBoundaries)
 	galaxies := universe.getGalaxies()
 	sum := calculateDistanceSumOverBoundaries(galaxies, rowBoundaries, colBoundaries, 1000000)
 
